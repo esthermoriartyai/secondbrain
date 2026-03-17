@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  --accent: #FF0066;
+  --border: #EEEEEE;
+  --muted: #999999;
+  --very-muted: #CCCCCC;
+  --nav-border: #111111;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Geist', 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-dm-sans {
+  font-family: 'DM Sans', var(--font-dm-sans), sans-serif;
+}
+
+.font-geist {
+  font-family: 'Geist', sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Card hover effect */
+.insight-card-image {
+  transition: transform 0.4s ease;
+}
+.insight-card:hover .insight-card-image {
+  transform: scale(1.04);
+}
+.insight-card:hover .insight-card-title {
+  color: #FF0066;
+}
