@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
 import { put } from '@vercel/blob'
-import { db, screenshots } from '@/db'
+import { getDb, screenshots } from '@/db'
 import { eq } from 'drizzle-orm'
 import { getOrCreateUser } from '@/lib/get-or-create-user'
 import { processScreenshot } from '@/lib/process-screenshot'
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     })
 
     // Create screenshot record
-    const [screenshot] = await db
+    const [screenshot] = await getDb()
       .insert(screenshots)
       .values({
         userId: user.id,
@@ -56,7 +56,7 @@ export async function GET() {
 
   try {
     const user = await getOrCreateUser()
-    const rows = await db
+    const rows = await getDb()
       .select()
       .from(screenshots)
       .where(eq(screenshots.userId, user.id))
