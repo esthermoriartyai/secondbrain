@@ -3,7 +3,7 @@ import { db, users } from '@/db'
 import { eq } from 'drizzle-orm'
 
 export async function getOrCreateUser() {
-  const { userId: clerkId } = await auth()
+  const { userId: clerkId } = auth()
   if (!clerkId) throw new Error('Not authenticated')
 
   const existing = await db

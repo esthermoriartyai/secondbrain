@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^7.0.4",
+    "@clerk/nextjs": "^4.29.12",
     "@neondatabase/serverless": "^1.0.2",
     "@vercel/blob": "^2.3.1",
     "drizzle-kit": "^0.31.10",

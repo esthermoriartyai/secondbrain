@@ -9,7 +9,7 @@ import { getOrCreateUser } from '@/lib/get-or-create-user'
 import { processScreenshot } from '@/lib/process-screenshot'
 
 export async function POST(req: NextRequest) {
-  const { userId: clerkId } = await auth()
+  const { userId: clerkId } = auth()
   if (!clerkId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  const { userId: clerkId } = await auth()
+  const { userId: clerkId } = auth()
   if (!clerkId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {

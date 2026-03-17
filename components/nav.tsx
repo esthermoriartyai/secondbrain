@@ -50,7 +50,7 @@ export function Nav() {
           >
             + Save
           </Link>
-          <UserButton />
+          <UserButton afterSignOutUrl="/sign-in" />
         </div>
       </div>
     </nav>

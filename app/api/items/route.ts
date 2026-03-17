@@ -6,7 +6,7 @@ import { neon } from '@neondatabase/serverless'
 import { getOrCreateUser } from '@/lib/get-or-create-user'
 
 export async function POST(req: NextRequest) {
-  const { userId: clerkId } = await auth()
+  const { userId: clerkId } = auth()
   if (!clerkId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const sql = neon(process.env.DATABASE_URL!)
