@@ -1,7 +1,13 @@
 import OpenAI from 'openai'
 import { neon } from '@neondatabase/serverless'
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+// Lazy singleton — must not instantiate at module load time because
+// OPENAI_API_KEY is not available during Docker/Next.js build-time bundling.
+let _openai: OpenAI | undefined
+function getOpenAI(): OpenAI {
+  if (!_openai) _openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  return _openai
+}
 
 const SYSTEM_PROMPT = `You are a personal knowledge assistant. The user has saved a screenshot. Extract structured knowledge from everything visible in the image.
 
@@ -61,7 +67,7 @@ export async function processScreenshot(
 
   try {
     // Call GPT-4o vision
-    const response = await client.chat.completions.create({
+    const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o',
       messages: [
         {
